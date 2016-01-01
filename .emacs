@@ -6,6 +6,7 @@
 		    magit
                     company
                     company-tern
+                    editorconfig
                     flycheck
                     flycheck
                     flycheck-clojure
@@ -31,9 +32,11 @@
 
 (require 'magit)
 (require 'company)
+(require 'editorconfig)
 (require 'flycheck)
 (require 'js2-mode)
 (require 'web-mode)
+(require 'websocket)
 (require 'markdown-mode)
 (require 'paredit)
 (require 'clojure-mode)
@@ -61,6 +64,9 @@
     (setq auto-save-file-name-transforms
           `((".*" ,temporary-file-directory t)))
 
+;; editor-config
+(editorconfig-mode 1)
+
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
@@ -84,8 +90,9 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; set up key bindings
-(global-set-key (kbd "s-3") 'split-window-right)
+(global-set-key (kbd "s-1") 'delete-other-windows)
 (global-set-key (kbd "s-2") 'split-window-below)
+(global-set-key (kbd "s-3") 'split-window-right)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-b") 'helm-mini)
 (global-set-key (kbd "s-o") 'helm-find-files)
