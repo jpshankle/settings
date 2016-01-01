@@ -18,7 +18,8 @@
 		    cider
                     elfeed
                     helm
-                    helm-ls-git))
+                    helm-ls-git
+                    atom-one-dark-theme))
 
 (package-initialize)
 
@@ -88,6 +89,8 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-b") 'helm-mini)
 (global-set-key (kbd "s-o") 'helm-find-files)
+(global-unset-key [escape])
+(global-set-key [escape] 'keyboard-escape-quit)
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
