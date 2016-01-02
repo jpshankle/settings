@@ -8,7 +8,8 @@
                     company-tern
                     editorconfig
                     flycheck
-                    flycheck
+                    flycheck-color-mode-line
+                    flycheck-pos-tip
                     flycheck-clojure
                     js2-mode
                     web-mode
@@ -20,6 +21,7 @@
                     elfeed
                     helm
                     helm-ls-git
+                    helm-descbinds
                     atom-one-dark-theme))
 
 (package-initialize)
@@ -34,6 +36,7 @@
 (require 'company)
 (require 'editorconfig)
 (require 'flycheck)
+(require 'flycheck-color-mode-line)
 (require 'js2-mode)
 (require 'web-mode)
 (require 'websocket)
@@ -43,6 +46,7 @@
 (require 'cider)
 (require 'elfeed)
 (require 'helm)
+(require 'helm-descbinds)
 
 (set-frame-font "Menlo 14")
 (tool-bar-mode -1)
@@ -57,6 +61,7 @@
 
 ;; helm settings
 (setq helm-M-x-fuzzy-match t)
+(helm-descbinds-mode)
 
 ;; make auto save use system temp folder
 (setq backup-directory-alist
@@ -67,12 +72,20 @@
 ;; editor-config
 (editorconfig-mode 1)
 
+;; flycheck
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
+(eval-after-load 'flycheck '(flycheck-clojure-setup))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$'" . web-mode))
 
 ;; js2-mode
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 ;; cider-mode
