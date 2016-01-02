@@ -1,3 +1,8 @@
+;;; my.emacs --- making emacs the way i want it
+;;; Commentary:
+;;; This is my .emacs file
+
+;;; Code:
 (require 'package)
 
 (add-to-list 'package-archives
@@ -8,6 +13,7 @@
                     company-tern
                     editorconfig
                     flycheck
+		    flycheck-status-emoji
                     flycheck-color-mode-line
                     flycheck-pos-tip
                     flycheck-clojure
@@ -48,7 +54,9 @@
 (require 'helm)
 (require 'helm-descbinds)
 
-(set-frame-font "Menlo 14")
+(set-face-attribute 'default nil :font "Menlo 14")
+(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
+
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (global-linum-mode t)
@@ -79,6 +87,10 @@
   (flycheck-pos-tip-mode))
 (eval-after-load 'flycheck '(flycheck-clojure-setup))
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint)))
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -99,8 +111,10 @@
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; enable company mode in all buffers and add to it
-(add-to-list 'company-backends 'company-tern)
 (add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'company-backends 'company-tern)
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 
 ;; set up key bindings
 (global-set-key (kbd "s-1") 'delete-other-windows)
@@ -123,10 +137,14 @@
  '(custom-enabled-themes (quote (atom-one-dark)))
  '(custom-safe-themes
    (quote
-    ("4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" default))))
+    ("4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" default)))
+ '(flycheck-status-emoji-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(provide '.emacs)
+;;; .emacs ends here
