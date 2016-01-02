@@ -6,6 +6,8 @@
 (require 'package)
 
 (add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 (setq my-packages '(
 		    magit
@@ -30,7 +32,8 @@
                     helm
                     helm-ls-git
                     helm-descbinds
-                    atom-one-dark-theme))
+                    atom-one-dark-theme
+                    org-plus-contrib))
 
 (package-initialize)
 
