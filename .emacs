@@ -24,6 +24,8 @@
                     paredit
                     clojure-mode
 		    cider
+                    scad-mode
+                    scad-preview
                     elfeed
                     helm
                     helm-ls-git
@@ -53,6 +55,7 @@
 (require 'elfeed)
 (require 'helm)
 (require 'helm-descbinds)
+(require 'scad-preview)
 
 (set-face-attribute 'default nil :font "Menlo 14")
 (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
