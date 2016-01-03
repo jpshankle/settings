@@ -33,6 +33,7 @@
                     helm-ls-git
                     helm-descbinds
                     atom-one-dark-theme
+                    dired+
                     org-plus-contrib))
 
 (package-initialize)
@@ -57,8 +58,10 @@
 (require 'cider)
 (require 'elfeed)
 (require 'helm)
+(require 'helm-ls-git)
 (require 'helm-descbinds)
 (require 'scad-preview)
+(require 'dired+)
 
 (set-face-attribute 'default nil :font "Menlo 14")
 (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
@@ -129,6 +132,8 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-b") 'helm-mini)
 (global-set-key (kbd "s-o") 'helm-find-files)
+(global-set-key (kbd "s-k") 'other-window)
+(global-set-key (kbd "s-[") 'magit-status)
 (global-unset-key [escape])
 (global-set-key [escape] 'keyboard-escape-quit)
 
