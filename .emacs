@@ -29,6 +29,7 @@
                     scad-mode
                     scad-preview
                     elfeed
+		    elfeed-org
                     helm
                     helm-ls-git
                     helm-descbinds
@@ -57,6 +58,7 @@
 (require 'clojure-mode)
 (require 'cider)
 (require 'elfeed)
+(require 'elfeed-org)
 (require 'helm)
 (require 'helm-ls-git)
 (require 'helm-descbinds)
@@ -71,6 +73,9 @@
 (global-linum-mode t)
 (electric-pair-mode t)
 (setq-default indent-tabs-mode nil)
+
+;; elfeed
+(elfeed-org)
 
 ;; enable windmove
 (when (fboundp 'windmove-default-keybindings)
@@ -103,7 +108,7 @@
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
