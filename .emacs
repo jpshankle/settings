@@ -14,6 +14,7 @@
                     company
                     company-tern
                     editorconfig
+                    exec-path-from-shell
                     flycheck
 		    flycheck-status-emoji
                     flycheck-color-mode-line
@@ -48,6 +49,7 @@
 (require 'magit)
 (require 'company)
 (require 'editorconfig)
+(require 'exec-path-from-shell)
 (require 'flycheck)
 (require 'flycheck-color-mode-line)
 (require 'js2-mode)
@@ -136,6 +138,8 @@
 (global-set-key (kbd "s-3") 'split-window-right)
 (global-set-key (kbd "s-<left>") 'move-beginning-of-line)
 (global-set-key (kbd "s-<right>") 'move-end-of-line)
+(global-set-key (kbd "s-<up>") 'scroll-down-commmand)
+(global-set-key (kbd "s-<down>") 'scroll-up-command)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-b") 'helm-mini)
 (global-set-key (kbd "s-o") 'helm-find-files)
@@ -143,9 +147,6 @@
 (global-set-key (kbd "s-[") 'magit-status)
 (global-unset-key [escape])
 (global-set-key [escape] 'keyboard-escape-quit)
-
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
