@@ -31,9 +31,11 @@
                     scad-preview
                     elfeed
 		    elfeed-org
+                    projectile
                     helm
                     helm-ls-git
                     helm-descbinds
+                    helm-projectile
                     atom-one-dark-theme
                     dired+
                     org-plus-contrib))
@@ -61,7 +63,9 @@
 (require 'cider)
 (require 'elfeed)
 (require 'elfeed-org)
+(require 'projectile)
 (require 'helm)
+(require 'helm-projectile)
 (require 'helm-ls-git)
 (require 'helm-descbinds)
 (require 'scad-preview)
@@ -83,7 +87,11 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+;; projectile settings
+(projectile-global-mode)
+
 ;; helm settings
+(helm-projectile-on)
 (setq helm-M-x-fuzzy-match t)
 (helm-descbinds-mode)
 
@@ -142,7 +150,7 @@
 (global-set-key (kbd "s-<down>") 'scroll-up-command)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "s-b") 'helm-mini)
-(global-set-key (kbd "s-o") 'helm-find-files)
+(global-set-key (kbd "s-o") 'helm-projectile)
 (global-set-key (kbd "s-k") 'other-window)
 (global-set-key (kbd "s-[") 'magit-status)
 (global-unset-key [escape])
