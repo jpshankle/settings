@@ -71,6 +71,8 @@
 (require 'scad-preview)
 (require 'dired+)
 
+(exec-path-from-shell-initialize)
+
 (set-face-attribute 'default nil :font "Menlo 14")
 (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
 
