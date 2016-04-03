@@ -28,6 +28,7 @@ values."
      clojure
      elfeed
      emacs-lisp
+     extra-langs
      games
      git
      github
@@ -257,7 +258,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
                                  (editorconfig-mode)
-                                 (global-linum-mode)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
