@@ -30,7 +30,8 @@ values."
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil)
      better-defaults
-     clojure
+     (clojure
+      :variables clojure-enable-fancify-symbols t)
      elfeed
      emacs-lisp
      extra-langs
@@ -201,7 +202,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
@@ -263,7 +264,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-                                 (editorconfig-mode)
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+  (editorconfig-mode)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
@@ -274,3 +288,17 @@ you should place you code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (xterm-color which-key web-mode use-package typit mmt spaceline persp-mode org-plus-contrib org-download neotree move-text info+ indent-guide hide-comnt help-fns+ helm-flx git-messenger eyebrowse exec-path-from-shell evil-mc editorconfig column-enforce-mode clj-refactor cider tern elfeed iedit smartparens highlight company helm helm-core pcache markdown-mode alert projectile magit magit-popup git-commit with-editor hydra haml-mode js2-mode flycheck spacemacs-theme xkcd ws-butler wolfram-mode window-numbering web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tide thrift tagedit stan-mode smeargle slim-mode shell-pop scss-mode scad-mode sass-mode reveal-in-osx-finder restclient restart-emacs ranger rainbow-delimiters queue quelpa qml-mode pug-mode pkg-info pcre2el pbcopy paredit paradox pacmacs osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-bullets open-junk-file ob-http mwim multi-term mmm-mode matlab-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lua-mode lorem-ipsum log4e livid-mode linum-relative link-hint less-css-mode launchctl julia-mode json-mode js2-refactor js-doc inflections ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gntp github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav elfeed-web elfeed-org elfeed-goodies edn dumb-jump diminish diff-hl company-web company-tern company-statistics coffee-mode clojure-snippets clojure-mode clean-aindent-mode cider-eval-sexp-fu bind-key auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile async arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
